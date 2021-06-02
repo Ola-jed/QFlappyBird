@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/0.png</file>
+        <file>assets/1.png</file>
+        <file>assets/2.png</file>
+        <file>assets/3.png</file>
+        <file>assets/background-day.png</file>
+        <file>assets/background-night.png</file>
+        <file>assets/base.png</file>
+        <file>assets/bluebird-downflap.png</file>
+        <file>assets/bluebird-midflap.png</file>
+        <file>assets/bluebird-upflap.png</file>
+        <file>assets/gameover.png</file>
+        <file>assets/message.png</file>
+        <file>assets/pillar.png</file>
+        <file>assets/pillar-reversed.png</file>
+        <file>assets/redbird-downflap.png</file>
+        <file>assets/redbird-midflap.png</file>
+        <file>assets/redbird-upflap.png</file>
+        <file>assets/yellowbird-downflap.png</file>
+        <file>assets/yellowbird-midflap.png</file>
+        <file>assets/yellowbird-upflap.png</file>
+        <file>assets/icon.ico</file>
+    </qresource>
+</RCC>
