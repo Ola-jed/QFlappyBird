@@ -6,15 +6,21 @@
 #include <QTimer>
 #include <QKeyEvent>
 #include <QGraphicsScene>
+#include <QGraphicsTextItem>
 #include <QGraphicsSceneMouseEvent>
 
 class Scene : public QGraphicsScene
 {
     Q_OBJECT
 
+
 public:
     explicit Scene(QObject *parent = nullptr);
     void addBird();
+    [[nodiscard]] bool isInGame() const;
+    [[nodiscard]] int getScore() const;
+    void setInGame(bool inGame);
+    void incrementScore();
 
 public slots:
     void startGame();
@@ -27,13 +33,6 @@ private:
     // Each second, a pillar appears
     const int DURATION_PILLAR_TIMER = 1000;
     bool inGame;
-public:
-    [[nodiscard]] bool isInGame() const;
-    [[nodiscard]] int getScore() const;
-    void setInGame(bool inGame);
-    void incrementScore();
-
-private:
     int score = 0;
     QTimer *pillarTimer;
     BirdItem *bird;

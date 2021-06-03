@@ -13,10 +13,10 @@ else()
     set(QT_VERSION 6)
 endif()
 
-set(REQUIRED_LIBS Core Gui Widgets)
-set(REQUIRED_LIBS_QUALIFIED Qt${QT_VERSION}::Core Qt${QT_VERSION}::Gui Qt${QT_VERSION}::Widgets)
+set(REQUIRED_LIBS Core Gui Widgets Sql)
+set(REQUIRED_LIBS_QUALIFIED Qt${QT_VERSION}::Core Qt${QT_VERSION}::Gui Qt${QT_VERSION}::Sql Qt${QT_VERSION}::Widgets)
 
-add_executable(${PROJECT_NAME} src/main.cpp resources.qrc src/scene.cpp src/scene.hpp src/widget.cpp src/widget.hpp src/Widget.ui src/pillaritem.cpp src/pillaritem.hpp src/birditem.cpp src/birditem.hpp)
+add_executable(${PROJECT_NAME} src/main.cpp resources.qrc src/scene.cpp src/scene.hpp src/widget.cpp src/widget.hpp src/Widget.ui src/pillaritem.cpp src/pillaritem.hpp src/birditem.cpp src/birditem.hpp src/scoredao.cpp src/scoredao.hpp)
 
 if (NOT CMAKE_PREFIX_PATH)
     message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
