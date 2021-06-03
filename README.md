@@ -15,3 +15,10 @@ make
 ```
 
 You can import the project if you use an ide.
+
+## TODO
+
+- Make a score manager (table view and sql manager)
+- Make a menu with new game and score options
+- Notification if it is the best score
+- Deploy

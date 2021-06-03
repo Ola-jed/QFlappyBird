@@ -41,8 +41,41 @@ qreal PillarItem::x() const
 void PillarItem::setX(qreal x)
 {
     m_x = x;
+    if(x < 0 && !isAfterBird)
+    {
+        isAfterBird = true;
+        auto theScene = scene();
+        auto myScene = qobject_cast<Scene*>(theScene);
+        if(myScene)
+        {
+            myScene->incrementScore();
+        }
+    }
+    if(collisionWithBird()) emit collidedABird();
     setPos(QPoint{0,0} + QPointF{x,static_cast<qreal>(yPos)});
 }
 
+bool PillarItem::collisionWithBird() const
+{
+    // Check items colliding with the pillars
+    auto itemsColliding = topPillar->collidingItems();
+    itemsColliding.append(bottomPillar->collidingItems());
+    foreach(auto const item,itemsColliding)
+    {
+        auto birdItemColliding = dynamic_cast<BirdItem*>(item);
+        if(birdItemColliding) return true;
+    }
+    return false;
+}
+
+// End of game, stop pillar
+void PillarItem::stopPillar()
+{
+    xAnimation->stop();
+}
+
 PillarItem::~PillarItem()
-= default;
+{
+    delete topPillar;
+    delete bottomPillar;
+}

@@ -28,6 +28,9 @@ private:
     Scene *scene{};
 
     void buildScene();
+
+private slots:
+    void startGame();
 };
 
 #endif //QFLAPPYBIRD_WIDGET_HPP

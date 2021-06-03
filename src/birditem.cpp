@@ -62,14 +62,12 @@ void BirdItem::buildAnimations()
 {
     // Building our animation for the y axis
     yAnimation = new QPropertyAnimation(this,"y",this);
-    yAnimation->setStartValue(scenePos().y());
+    yAnimation->setStartValue(scenePos().y()-50);
     yAnimation->setEndValue(groundPosition);
     yAnimation->setEasingCurve(QEasingCurve::InQuad);
     yAnimation->setDuration(1000);
-    yAnimation->start();
     // Rotation animation
     rotationAnimation = new QPropertyAnimation(this,"rotation",this);
-    rotateTo(90,1200,QEasingCurve::InQuad);
 }
 
 void BirdItem::rotateTo(const qreal &end,const int &duration,const QEasingCurve &easingCurve)
@@ -110,4 +108,18 @@ void BirdItem::fall()
         yAnimation->start();
         rotateTo(90,1200,QEasingCurve::InCubic);
     }
+}
+
+// The bird can start moving and the animations begin
+void BirdItem::startFlying()
+{
+    yAnimation->start();
+    rotateTo(90,1200,QEasingCurve::InQuad);
+}
+
+// Stops the bird if it collided a pillar
+void BirdItem::stopFlying()
+{
+    yAnimation->stop();
+    rotationAnimation->stop();
 }

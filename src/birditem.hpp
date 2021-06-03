@@ -18,6 +18,8 @@ public:
     qreal rotation() const;
     qreal y() const;
     void flyUp();
+    void startFlying();
+    void stopFlying();
 
 public slots:
     void setRotation(qreal rotation);
