@@ -17,7 +17,7 @@ void PillarItem::buildAnimation()
 {
     // Defining random values for the position of the pillar item
     yPos = QRandomGenerator::global()->bounded(150);
-    auto xRandom = QRandomGenerator::global()->bounded(200);
+    auto const xRandom = QRandomGenerator::global()->bounded(200);
     setPos(QPoint{0,0} + QPoint{X_AXIS_VALUE + xRandom,yPos});
     // Animation for x axis for the pillar item
     xAnimation = new QPropertyAnimation(this,"x",this);
