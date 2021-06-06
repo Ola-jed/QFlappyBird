@@ -99,7 +99,6 @@ void Scene::deletePillars()
 void Scene::incrementScore()
 {
     score++;
-    qDebug() << score;
 }
 
 int Scene::getScore() const

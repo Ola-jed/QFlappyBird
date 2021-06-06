@@ -3,6 +3,7 @@
 
 #include "birditem.hpp"
 #include "pillaritem.hpp"
+#include "scoredao.hpp"
 #include <QTimer>
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -34,6 +35,7 @@ private:
     const int DURATION_PILLAR_TIMER = 1000;
     bool inGame;
     int score = 0;
+    ScoreDAO myScoreDao{};
     QTimer *pillarTimer;
     BirdItem *bird;
     void deletePillars();
