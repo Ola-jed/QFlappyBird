@@ -26,7 +26,7 @@ public slots:
 
 private:
     bool isAfterBird = false;
-    const int ANIMATION_DURATION = 1500;
+    const int ANIMATION_DURATION = 2500;
     const int X_AXIS_VALUE = 260;
     qreal m_x;
     int yPos;
