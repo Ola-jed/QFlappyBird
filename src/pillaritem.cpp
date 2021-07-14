@@ -26,7 +26,7 @@ void PillarItem::buildAnimation()
     xAnimation->setEasingCurve(QEasingCurve::Linear);
     xAnimation->setDuration(ANIMATION_DURATION);
     // Destroy the pillar item when it's go out the view
-    connect(xAnimation,&QPropertyAnimation::finished,[this](){
+    connect(xAnimation,&QPropertyAnimation::finished,[this]{
         scene()->removeItem(this);
         delete this;
     });
@@ -60,7 +60,7 @@ bool PillarItem::collisionWithBird() const
     // Check items colliding with the pillars
     auto itemsColliding = topPillar->collidingItems();
     itemsColliding.append(bottomPillar->collidingItems());
-    foreach(auto const item,itemsColliding)
+    for(auto const item : itemsColliding)
     {
         auto birdItemColliding = dynamic_cast<BirdItem*>(item);
         if(birdItemColliding) return true;

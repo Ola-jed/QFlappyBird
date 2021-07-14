@@ -16,7 +16,7 @@ endif()
 set(REQUIRED_LIBS Core Gui Widgets Sql)
 set(REQUIRED_LIBS_QUALIFIED Qt${QT_VERSION}::Core Qt${QT_VERSION}::Gui Qt${QT_VERSION}::Sql Qt${QT_VERSION}::Widgets)
 
-add_executable(${PROJECT_NAME} src/main.cpp resources.qrc src/scene.cpp src/scene.hpp src/widget.cpp src/widget.hpp src/Widget.ui src/pillaritem.cpp src/pillaritem.hpp src/birditem.cpp src/birditem.hpp src/scoredao.cpp src/scoredao.hpp)
+add_executable(${PROJECT_NAME} src/main.cpp resources.qrc src/scene.cpp include/scene.hpp src/widget.cpp include/widget.hpp include/Widget.ui src/pillaritem.cpp include/pillaritem.hpp src/birditem.cpp include/birditem.hpp src/scoredao.cpp include/scoredao.hpp)
 
 if (NOT CMAKE_PREFIX_PATH)
     message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
@@ -30,5 +30,6 @@ if ( MSVC )
     set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} /W4")
 endif()
 
+include_directories(${QFlappyBird_SOURCE_DIR}/include)
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})

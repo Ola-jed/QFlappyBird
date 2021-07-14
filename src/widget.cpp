@@ -1,7 +1,7 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_Widget.h" resolved
 
 #include "widget.hpp"
-#include "ui_Widget.h"
+#include "../include/ui_Widget.h"
 
 Widget::Widget(QWidget *parent) :
         QWidget(parent), ui(new Ui::Widget)
