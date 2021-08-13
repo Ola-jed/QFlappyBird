@@ -37,12 +37,11 @@ private:
     void buildAnimations();
     WingPosition wingPosition;
     bool wingDirectionIsUp;
-    const int BIRD_WINGS_UPDATE_DURATION = 80;
-    const int GROUND_POSITION = 230;
+    static constexpr int BIRD_WINGS_UPDATE_DURATION = 80;
+    static constexpr int GROUND_POSITION = 230;
     qreal groundPosition;
     QPropertyAnimation *yAnimation;
     QPropertyAnimation *rotationAnimation;
-
 };
 
 #endif //QFLAPPYBIRD_BIRDITEM_HPP

@@ -1,6 +1,6 @@
 #include "scene.hpp"
 
-Scene::Scene(QObject *parent) : QGraphicsScene(parent),inGame(false)
+Scene::Scene(QObject *parent) : QGraphicsScene(parent), inGame(false)
 {
     setUpPillarTimer();
 }
@@ -9,7 +9,7 @@ Scene::Scene(QObject *parent) : QGraphicsScene(parent),inGame(false)
 void Scene::startGame()
 {
     bird->startFlying();
-    if(!pillarTimer->isActive())
+    if (!pillarTimer->isActive())
     {
         deletePillars();
         inGame = true;
@@ -20,10 +20,10 @@ void Scene::startGame()
 void Scene::setUpPillarTimer()
 {
     pillarTimer = new QTimer(this);
-    connect(pillarTimer,&QTimer::timeout,[this](){
+    connect(pillarTimer, &QTimer::timeout, [this]() {
         auto pillarItem = new PillarItem();
         // In case of collision
-        connect(pillarItem,&PillarItem::collidedABird,[this](){
+        connect(pillarItem, &PillarItem::collidedABird, [this]() {
             pillarTimer->stop();
             stopBirdAndPillars();
             inGame = false;
@@ -41,7 +41,7 @@ void Scene::addBird()
 // Handle key press and mouse press event for the bird
 void Scene::keyPressEvent(QKeyEvent *event)
 {
-    if((event->key() == Qt::Key::Key_Space) && inGame)
+    if ((event->key() == Qt::Key::Key_Space) && inGame)
     {
         bird->flyUp();
     }
@@ -50,7 +50,7 @@ void Scene::keyPressEvent(QKeyEvent *event)
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if((event->button() == Qt::LeftButton) && inGame)
+    if ((event->button() == Qt::LeftButton) && inGame)
     {
         bird->flyUp();
     }
@@ -62,14 +62,14 @@ void Scene::stopBirdAndPillars()
     bird->stopFlying();
     // Stop all the pillars of the scene
     auto sceneItems = items();
-    foreach(auto item,sceneItems)
-    {
-        auto tempPillarItem = dynamic_cast<PillarItem*>(item);
-        if(tempPillarItem)
+            foreach(auto item, sceneItems)
         {
-            tempPillarItem->stopPillar();
+            auto tempPillarItem = dynamic_cast<PillarItem *>(item);
+            if (tempPillarItem)
+            {
+                tempPillarItem->stopPillar();
+            }
         }
-    }
 }
 
 bool Scene::isInGame() const
@@ -84,11 +84,11 @@ void Scene::setInGame(bool isInGame)
 
 void Scene::deletePillars()
 {
-    auto sceneItems = items();
-    foreach(auto item,sceneItems)
+    auto      sceneItems = items();
+    for (auto item: sceneItems)
     {
-        auto tempPillarItem = dynamic_cast<PillarItem*>(item);
-        if(tempPillarItem)
+        auto tempPillarItem = dynamic_cast<PillarItem *>(item);
+        if (tempPillarItem)
         {
             removeItem(tempPillarItem);
             delete tempPillarItem;

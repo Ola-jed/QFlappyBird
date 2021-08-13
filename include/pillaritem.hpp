@@ -26,8 +26,8 @@ public slots:
 
 private:
     bool isAfterBird = false;
-    const int ANIMATION_DURATION = 2500;
-    const int X_AXIS_VALUE = 260;
+    static constexpr int ANIMATION_DURATION = 2500;
+    static constexpr int X_AXIS_VALUE = 260;
     qreal m_x;
     int yPos;
     bool collisionWithBird() const;

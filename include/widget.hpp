@@ -25,7 +25,7 @@ public:
 
 private:
     Ui::Widget *ui;
-    Scene *scene{};
+    Scene      *scene{};
 
     void buildScene();
 

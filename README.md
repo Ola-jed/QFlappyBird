@@ -6,7 +6,7 @@ Clone of flappy bird made with qt widgets
 
 You need to have [qt](https://www.qt.io/download-qt-installer) installed  to build the app.
 
-```bash
+```shell
 git clone https://github.com/Ola-jed/QFlappyBird.git
 cd QFlappyBird
 cmake .
@@ -18,7 +18,7 @@ You can import the project if you use an ide.
 
 ## TODO
 
-- Make a score manager (table view and sql manager)
-- Make a menu with new game and score options
-- Notification if it is the best score
-- Deploy
+- [ ] Make a score manager (table view and sql manager)
+- [ ] Make a menu with new game and score options
+- [ ] Notification if it is the best score
+- [ ] Deploy

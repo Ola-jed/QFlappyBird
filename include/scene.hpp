@@ -12,7 +12,7 @@
 
 class Scene : public QGraphicsScene
 {
-    Q_OBJECT
+Q_OBJECT
 
 
 public:
@@ -32,12 +32,12 @@ protected:
 
 private:
     // Each second, a pillar appears
-    const int DURATION_PILLAR_TIMER = 1000;
-    bool inGame;
-    int score = 0;
-    ScoreDAO myScoreDao{};
-    QTimer *pillarTimer;
-    BirdItem *bird;
+    static constexpr int DURATION_PILLAR_TIMER = 1000;
+    bool      inGame;
+    int       score                 = 0;
+    ScoreDAO  myScoreDao{};
+    QTimer    *pillarTimer;
+    BirdItem  *bird;
     void deletePillars();
     void setUpPillarTimer();
     void stopBirdAndPillars();

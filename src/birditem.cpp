@@ -1,11 +1,11 @@
 #include "birditem.hpp"
 
 BirdItem::BirdItem(const QPixmap &pixmap)
-        :wingPosition(WingPosition::Up),wingDirectionIsUp(false)
+        : wingPosition(WingPosition::Up), wingDirectionIsUp(false)
 {
     setPixmap(pixmap);
     auto birdWingsDirectionTimer = new QTimer(this);
-    connect(birdWingsDirectionTimer,&QTimer::timeout,[this](){
+    connect(birdWingsDirectionTimer, &QTimer::timeout, [this]() {
         updatePixmap();
     });
     birdWingsDirectionTimer->start(BIRD_WINGS_UPDATE_DURATION);
@@ -13,15 +13,15 @@ BirdItem::BirdItem(const QPixmap &pixmap)
     buildAnimations();
 }
 
+// Updating the pixmap depending on the direction
 void BirdItem::updatePixmap()
 {
     switch (wingPosition)
     {
         case WingPosition::Mid:
-            // Updating the pixmap depending on the direction
             setPixmap(QPixmap{wingDirectionIsUp
-                ? ":assets/bird-upflap.png" : ":assets/bird-downflap.png"});
-            wingPosition = wingDirectionIsUp ? WingPosition::Up : WingPosition::Down;
+                              ? ":assets/bird-upflap.png" : ":assets/bird-downflap.png"});
+            wingPosition      = wingDirectionIsUp ? WingPosition::Up : WingPosition::Down;
             wingDirectionIsUp = !wingDirectionIsUp;
             break;
         case WingPosition::Up:
@@ -46,31 +46,30 @@ void BirdItem::setRotation(qreal rotation)
     m_rotation = rotation;
     const auto point = boundingRect().center();
     QTransform transformRotation;
-    transformRotation.translate(point.x(),point.y());
+    transformRotation.translate(point.x(), point.y());
     transformRotation.rotate(rotation);
-    transformRotation.translate(-point.x(),-point.y());
+    transformRotation.translate(-point.x(), -point.y());
     setTransform(transformRotation);
 }
 
 void BirdItem::setY(qreal y)
 {
-    moveBy(0,y - m_y);
+    moveBy(0, y - m_y);
     m_y = y;
 }
 
+// Building our animation for the y-axis
 void BirdItem::buildAnimations()
 {
-    // Building our animation for the y axis
-    yAnimation = new QPropertyAnimation(this,"y",this);
-    yAnimation->setStartValue(scenePos().y()-50);
+    yAnimation = new QPropertyAnimation(this, "y", this);
+    yAnimation->setStartValue(scenePos().y() - 50);
     yAnimation->setEndValue(groundPosition);
     yAnimation->setEasingCurve(QEasingCurve::InQuad);
     yAnimation->setDuration(1000);
-    // Rotation animation
-    rotationAnimation = new QPropertyAnimation(this,"rotation",this);
+    rotationAnimation = new QPropertyAnimation(this, "rotation", this);
 }
 
-void BirdItem::rotateTo(const qreal &end,const int &duration,const QEasingCurve &easingCurve)
+void BirdItem::rotateTo(const qreal &end, const int &duration, const QEasingCurve &easingCurve)
 {
     rotationAnimation->setStartValue(rotation());
     rotationAnimation->setEndValue(end);
@@ -88,16 +87,16 @@ void BirdItem::flyUp()
     yAnimation->setEndValue(currentY - scene()->sceneRect().height() / 8);
     yAnimation->setEasingCurve(QEasingCurve::OutQuad);
     yAnimation->setDuration(285);
-    connect(yAnimation,&QPropertyAnimation::finished,[this](){
+    connect(yAnimation, &QPropertyAnimation::finished, [this]() {
         fall();
     });
     yAnimation->start();
-    rotateTo(-20,200,QEasingCurve::OutCubic);
+    rotateTo(-20, 200, QEasingCurve::OutCubic);
 }
 
 void BirdItem::fall()
 {
-    if(y() < GROUND_POSITION)
+    if (y() < GROUND_POSITION)
     {
         rotationAnimation->stop();
         yAnimation->stop();
@@ -106,7 +105,7 @@ void BirdItem::fall()
         yAnimation->setEndValue(GROUND_POSITION);
         yAnimation->setDuration(500);
         yAnimation->start();
-        rotateTo(90,1200,QEasingCurve::InCubic);
+        rotateTo(90, 1200, QEasingCurve::InCubic);
     }
 }
 
@@ -114,7 +113,7 @@ void BirdItem::fall()
 void BirdItem::startFlying()
 {
     yAnimation->start();
-    rotateTo(90,1200,QEasingCurve::InQuad);
+    rotateTo(90, 1200, QEasingCurve::InQuad);
 }
 
 // Stops the bird if it collided a pillar
